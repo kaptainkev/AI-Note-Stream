@@ -11,7 +11,14 @@ export default function NavBar() {
         <Link href="/notes" className="flex items-center gap-1">
           <Image src={logo} width={120} height={120}></Image>
         </Link>
-        <div className="flex items-center gap-2">
+
+        <span>Element 2</span>
+        <span>Element 2</span>
+        <span>Element 2</span>
+        <span>Element 2</span>
+        <span>Element 2</span>
+
+        <div id="FaceAndAddNote" className="flex items-center gap-2">
           {" "}
           <UserButton
             afterSignOutUrl="/"
@@ -24,12 +31,6 @@ export default function NavBar() {
             Add Note
           </Button>
         </div>
-
-        <span>Element 2</span>
-        <span>Element 2</span>
-        <span>Element 2</span>
-        <span>Element 2</span>
-        <span>Element 2</span>
       </div>
     </div>
   );

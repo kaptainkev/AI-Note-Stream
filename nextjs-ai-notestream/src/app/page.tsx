@@ -1,8 +1,16 @@
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
-import { Link } from "lucide-react";
+import Link from "next/link";
+
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs";
+
 export default function Home() {
+  const { userId } = auth();
+
+  if (userId) redirect("/notes");
+
   return (
     <main className="flex flex-col h-screen items-center justify-center gap-5">
       <div className="flex items-center gap-4">
@@ -19,7 +27,7 @@ export default function Home() {
       </p>
 
       <Button>
-        <Link href="/notes"></Link>Open
+        <Link href="/notes">Open</Link>
       </Button>
       <a
         href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
