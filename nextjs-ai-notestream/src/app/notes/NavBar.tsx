@@ -9,7 +9,7 @@ export default function NavBar() {
     <div className="p-4 shadow">
       <div className=" max-w-7xl flex flex-wrap gap-3 items-center justify-between">
         <Link href="/notes" className="flex items-center gap-1">
-          <Image src={logo} width={120} height={120}></Image>
+          <Image alt="" src={logo} width={120} height={120}></Image>
         </Link>
 
         <span>Element 2</span>
