@@ -29,7 +29,7 @@
     "openai": "^4.29.2",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.12",
-    "prisma": "^5.11.0",
+    "prisma": "^5.18.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
