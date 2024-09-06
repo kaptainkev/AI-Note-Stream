@@ -6,9 +6,9 @@ import { UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import AddNoteDialog from "@/components/ui/AddNoteDialog";
+import AddEditNoteDialog from "@/components/ui/AddEditNoteDialog";
 export default function NavBar() {
-  const [showAddNoteDialog, setshowAddNoteDialog] = useState(false);
+  const [showAddEditNoteDialog, setshowAddEditNoteDialog] = useState(false);
   return (
     <>
       <div className="p-4 shadow">
@@ -31,7 +31,7 @@ export default function NavBar() {
                 elements: { avatarBox: { width: "2.5rem", height: "2.5rem" } },
               }}
             ></UserButton>
-            <Button onClick={() => setshowAddNoteDialog(true)}>
+            <Button onClick={() => setshowAddEditNoteDialog(true)}>
               <Plus size={20} className="mr-2"></Plus>
               Add Note
             </Button>
@@ -39,11 +39,11 @@ export default function NavBar() {
         </div>
       </div>
 
-      {showAddNoteDialog && (
-        <AddNoteDialog
-          open={showAddNoteDialog}
-          setOpen={setshowAddNoteDialog}
-        ></AddNoteDialog>
+      {showAddEditNoteDialog && (
+        <AddEditNoteDialog
+          open={showAddEditNoteDialog}
+          setOpen={setshowAddEditNoteDialog}
+        ></AddEditNoteDialog>
       )}
     </>
   );

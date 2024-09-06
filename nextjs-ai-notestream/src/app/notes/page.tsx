@@ -3,9 +3,9 @@ import { Button } from "../../components/ui/button";
 
 import { Metadata } from "next";
 import prisma from "@/lib/db/prisma";
-
+import Note from "../../components/ui/Notes";
 export const metadata: Metadata = {
-  title: "Flow Landing",
+  title: "Flow Notes ",
 };
 export default async function NotesPage() {
   const { userId } = auth();
@@ -15,11 +15,23 @@ export default async function NotesPage() {
   const allNotes = await prisma.note.findMany({ where: { userId } });
   return (
     <>
-      {JSON.stringify(allNotes)}
-      <div className="flex h-screen">
-        <Button className="flex max-h-screen ">
-          THis is a pretty Button Man
-        </Button>
+      {/* Notes are being transformed into Note components here !*/}
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {allNotes.map((note) => (
+          <Note note={note} key={note.id}></Note>
+        ))}
+      </div>
+
+      {allNotes.length === 0 && (
+        <div className="col-span-full items-center flex h-screen text-center justify-center">
+          <p className="text-2xl font-semibold text-gray-500">
+            No Notes Found. Why don't you create one?
+          </p>
+        </div>
+      )}
+
+      <div className="">
+        <Button className=" ">THis is a pretty Button Man</Button>
       </div>
     </>
   );
