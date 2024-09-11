@@ -30,9 +30,7 @@ export default async function NotesPage() {
         </div>
       )}
 
-      <div className="">
-        <Button className=" ">THis is a pretty Button Man</Button>
-      </div>
+      <div className=""></div>
     </>
   );
 }

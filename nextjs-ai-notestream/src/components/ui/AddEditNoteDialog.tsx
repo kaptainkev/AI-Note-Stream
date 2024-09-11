@@ -1,3 +1,4 @@
+"use client";
 import { CreateNoteSchema, createNoteSchema } from "@/lib/validation/note";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,6 +20,8 @@ import { useRouter } from "next/navigation";
 
 import { Note } from "@prisma/client";
 import { useState } from "react";
+import prisma from "@/lib/db/prisma";
+import { title } from "process";
 interface AddEditNoteDialogProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -41,8 +44,6 @@ export default function AddEditNoteDialog({
   });
 
   async function onsubmit(input: CreateNoteSchema) {
-    alert(JSON.stringify(input));
-
     try {
       let response;
       if (noteToEdit) {
@@ -77,7 +78,7 @@ export default function AddEditNoteDialog({
     try {
       const response = await fetch("/api/notes", {
         method: "DELETE",
-        body: JSON.stringify({ id: noteToEdit.id }),
+        body: JSON.stringify({ id: noteToEdit?.id }),
       });
 
       if (!response.ok) throw Error("Status code:" + response.status);
@@ -97,7 +98,9 @@ export default function AddEditNoteDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-center">Addition</DialogTitle>
+          <DialogTitle className="text-center">
+            {noteToEdit ? "Edit note" : "Add Note"}
+          </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onsubmit)} className="space-y-3">
@@ -137,6 +140,8 @@ export default function AddEditNoteDialog({
                   variant="destructive"
                   loading={deleteInProgress}
                   disabled={form.formState.isSubmitting}
+                  onClick={deleteNote}
+                  type="button"
                 >
                   Delete Note
                 </LoadingButton>
